@@ -1,0 +1,296 @@
+:root[data-theme="light"] {
+    --bg-color: #ffffff;
+    --text-color: #333;
+    --text-color-secondary: #666;
+    --text-color-light: #888;
+    --gradient-start: #333;
+    --gradient-end: #666;
+    --particles-color: #666666;
+}
+
+:root[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --text-color-secondary: #cccccc;
+    --text-color-light: #999;
+    --gradient-start: #ffffff;
+    --gradient-end: #cccccc;
+    --particles-color: #444444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.profile {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--text-color-secondary);
+}
+
+.tagline {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color-secondary);
+    margin-bottom: 2rem;
+    letter-spacing: 0.5px;
+}
+
+.tagline span {
+    position: relative;
+    display: inline-block;
+}
+
+.tagline span:not(:last-child)::after {
+    content: "/";
+    margin: 0 8px;
+    color: var(--text-color-light);
+    font-weight: 400;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-icon {
+    width: 2rem;
+    height: 2rem;
+    transition: all 0.3s ease;
+    color: var(--text-color-secondary);
+}
+
+/* Instagram */
+.social-icon[aria-label="Instagram"] {
+    color: #E4405F;
+}
+.social-icon[aria-label="Instagram"]:hover {
+    color: var(--text-color);
+    transform: translateY(-3px);
+}
+
+/* TikTok */
+.social-icon[aria-label="TikTok"] {
+    color: #000000;
+}
+.social-icon[aria-label="TikTok"]:hover {
+    color: var(--text-color);
+    transform: translateY(-3px);
+}
+
+/* YouTube */
+.social-icon[aria-label="YouTube"] {
+    color: #FF0000;
+}
+.social-icon[aria-label="YouTube"]:hover {
+    color: var(--text-color);
+    transform: translateY(-3px);
+}
+
+/* LinkedIn */
+.social-icon[aria-label="LinkedIn"] {
+    color: #0A66C2;
+}
+.social-icon[aria-label="LinkedIn"]:hover {
+    color: var(--text-color);
+    transform: translateY(-3px);
+}
+
+/* GitHub */
+.social-icon[aria-label="GitHub"] {
+    color: #181717;
+}
+.social-icon[aria-label="GitHub"]:hover {
+    color: var(--text-color);
+    transform: translateY(-3px);
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--text-color-secondary);
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#theme-toggle-btn:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    transform: scale(1.1);
+    border-color: var(--text-color);
+}
+
+#theme-toggle-btn svg {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
+}
+
+.sun-icon, .moon-icon {
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.sun-icon {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.moon-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+[data-theme="dark"] .sun-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+[data-theme="dark"] .moon-icon {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+/* Add tooltip */
+#theme-toggle-btn::after {
+    content: attr(aria-label);
+    position: absolute;
+    right: 100%;
+    margin-right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 5px 10px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#theme-toggle-btn:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.8rem;
+    }
+
+    .name {
+        font-size: 1.25rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .social-icon {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+} 
